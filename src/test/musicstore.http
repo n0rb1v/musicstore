@@ -1,0 +1,11 @@
+GET http://localhost:8080/api/instruments
+Accept: application/json
+###
+
+PUT http://localhost:8080/api/instruments/1
+Content-Type: application/json
+Accept: application/json
+{
+   "price": 1000
+}
+###
