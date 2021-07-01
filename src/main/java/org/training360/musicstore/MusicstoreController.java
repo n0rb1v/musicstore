@@ -22,21 +22,27 @@ public class MusicstoreController {
     }
 
     @GetMapping
-    public List<InstrumentDTO> listInstruments(@RequestParam Optional<String> search) {
-        return musicstoreService.listAll(search);
+    public List<InstrumentDTO> listInstruments(@RequestParam Optional<String> search,@RequestParam Optional<Integer> price) {
+        return musicstoreService.listAll(search, price);
     }
     @GetMapping("/{id}")
     public InstrumentDTO findInstrumentById(@PathVariable("id") long id){
         return musicstoreService.findInstrumentById(id);
     }
     @PutMapping("/{id}")
-    public InstrumentDTO updateInstrument(@Valid @PathVariable("id") long id, @RequestBody UpdatePriceCommand command){
+    public InstrumentDTO updateInstrument(@PathVariable("id") long id, @Valid @RequestBody UpdatePriceCommand command){
         return musicstoreService.updateInstrument(id,command);
     }
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteInstrument(@PathVariable("id") long id){
         musicstoreService.deleteInstrument(id);
+    }
+
+    @DeleteMapping()
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteAll(){
+        musicstoreService.deleteAll();
     }
 
     @PostMapping
