@@ -1,4 +1,4 @@
-GET http://localhost:8080/api/instruments?search=son&price=3000
+GET http://localhost:8080/api/instruments?search=Gibson&price=3000
 Accept: application/json
 ###
 GET http://localhost:8080/api/instruments

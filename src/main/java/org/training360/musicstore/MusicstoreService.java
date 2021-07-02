@@ -27,13 +27,14 @@ public class MusicstoreService {
     }
 
     public List<InstrumentDTO> listAll(Optional<String> search, Optional<Integer> price) {
-        Type trgListType = new TypeToken<List<InstrumentDTO>>() {
-        }.getType();
-        List<Instrument> filter = instruments.stream()
-                .filter(i -> search.isEmpty() || i.getBrand().contains(search.get()))
+        //Type trgListType = new TypeToken<List<InstrumentDTO>>() {}.getType();
+        //List<Instrument> filter =
+                return instruments.stream()
+                .filter(i -> search.isEmpty() || i.getBrand().equalsIgnoreCase(search.get()))
                 .filter(i -> price.isEmpty() || i.getPrice() == price.get())
+                .map(i -> modelMapper.map(i,InstrumentDTO.class))
                 .collect(Collectors.toList());
-        return modelMapper.map(filter, trgListType);
+        //return modelMapper.map(filter, trgListType);
     }
 
     public InstrumentDTO createInstrument(CreateInstrumentCommand command) {
